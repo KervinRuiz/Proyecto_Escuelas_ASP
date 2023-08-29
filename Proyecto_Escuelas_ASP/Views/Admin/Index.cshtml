@@ -1,0 +1,57 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using Microsoft.AspNetCore;
+@model IEnumerable<IdentityRole>
+@{
+    ViewData["Title"] = "Roles";
+}
+<div class="row">
+    <div class="col-2">
+        <a class="w-100 btn btn-lg bg-gradient" style="color:#67b588" asp-action="Create"> Nuevo Rol</a>
+
+    </div>
+    <div class="col-2">
+
+        <a class="w-100 btn btn-lg bg-gradient" style="color:#67b588" asp-action="AsignarRol"> Usuarios</a>
+
+    </div>
+    <div class="col-3">
+
+        <a class="w-100 btn btn-lg bg-gradient" style="color:#67b588" asp-area="Identity" asp-page="/Account/Register">Usuario Nuevo </a>
+    </div>
+</div>
+<table class="table mt-4">
+    <thead>
+        <tr style="color:#67b588" class="bg-gradient">
+            <th class="col">
+                @Html.DisplayNameFor(x=>x.Id)     
+            </th>
+            <th class="col">
+                @Html.DisplayNameFor(Model=>Model.Name)     
+            </th>
+            <th class="col">
+                @Html.DisplayNameFor(Model=>Model.NormalizedName)   
+            </th>
+            <th class="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+        @foreach (var item in Model)
+        {         
+            <tr style="color:#67b588">
+                <td>
+                    @Html.DisplayFor(x=>item.Id)         
+                </td>
+                <td>
+                    @Html.DisplayFor(x=>item.Name)       
+                </td>
+                <td>
+                    @Html.DisplayFor(x=>item.NormalizedName)     
+                </td>
+                <td></td>
+            </tr>
+        }
+
+    </tbody>
+</table>

@@ -1,0 +1,69 @@
+﻿<!--Para poder acceder a la entidad de contacto-->
+@model Proyecto_Escuelas_ASP.Models.Profesor
+@{
+    ViewData["Title"] = "Editar profesor";
+}
+
+<h1 class="text-center"> Editar Curso</h1>
+
+
+<!--Carta con los contactos-->
+<div class="row">
+    <div class="offset-12">
+        <div class="card border">
+            <!--header de la carta-->
+            <div class="card-header bg-dark">
+                <h3 class="text-white"><strong>Editar profesor</strong></h3>
+                <script>
+
+                </script>
+
+            </div>
+            <!--Body de la carta-->
+            <div class="card-body">
+                <form asp-action="Edit" method="post">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+                    <div class="form-group">
+                        <label asp-for="Personas.Identificacion" class="control-label"></label>
+                        <input asp-for="Personas.Identificacion" class="form-control" placeholder="Ingrese la identificacion" />
+                        <span asp-validation-for="Personas.Identificacion" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Personas.Nombre" class="control-label"></label>
+                        <input asp-for="Personas.Nombre" class="form-control" placeholder="Ingrese el nombre" />
+                        <span asp-validation-for="Personas.Nombre" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Personas.Apellidos" class="control-label"></label>
+                        <input asp-for="Personas.Apellidos" class="form-control" placeholder="Ingrese la descripcion" />
+                        <span asp-validation-for="Personas.Apellidos" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Personas.Direccion" class="control-label"></label>
+                        <input asp-for="Personas.Direccion" class="form-control" placeholder="Ingrese la descripcion" />
+                        <span asp-validation-for="Personas.Direccion" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Personas.Sexo" class="control-label"></label>
+                        <select asp-for="Personas.Sexo" class="form-control" asp-items="ViewBag.Sexo"></select>
+                    </div>
+                    <div>
+                        <label asp-for="Personas.Fecha_Nacimiento" class="control-label"></label>
+                        <input type="date" asp-for="Personas.Fecha_Nacimiento" class="form-control" />
+                    </div>
+                    <!--Btn enviar datos-->
+                    <div class="form-floating mt-3">
+                        <button type="submit" class="btn btn-primary d-block mx-auto"><i class="bi bi-pencil-fill">Editar profesor</i></button>
+                    </div>
+                </form>
+                <a asp-controller="Restaurante" asp-action="Index">Regresar</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

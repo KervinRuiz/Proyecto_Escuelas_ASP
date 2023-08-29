@@ -1,0 +1,71 @@
+﻿<!--Para poder acceder a la entidad de contacto-->
+@model Proyecto_Escuelas_ASP.Models.Nota_Materia
+@{
+    ViewData["Title"] = "Editar nota";
+}
+
+<h1 class="text-center"> Editar nota</h1>
+
+
+<!--Carta con los contactos-->
+<div class="row">
+    <div class="offset-12">
+        <div class="card border">
+            <!--header de la carta-->
+            <div class="card-header bg-dark">
+                <h3 class="text-white"><strong>Editar nota</strong></h3>
+                <script>
+
+                </script>
+
+            </div>
+            <!--Body de la carta-->
+            <div class="card-body">
+                <form asp-action="Edit" method="post">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="NotaObtenida" class="control-label"></label>
+                        <input asp-for="NotaObtenida" class="form-control" placeholder="Ingrese el codigo" />
+                        <span asp-validation-for="NotaObtenida" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <label asp-for="FechaCalificacion" class="control-label"></label>
+                        <input type="date" asp-for="FechaCalificacion" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EstudianteId" class="control-label"></label>
+                        <select asp-for="EstudianteId" class="form-control ">
+                            @foreach (var item in @ViewBag.Estudiante)
+                            {
+                                <option value="@item.Id">
+                                    @item.PersonaId
+                                </option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="MateriaId" class="control-label"></label>
+                        <select asp-for="MateriaId" class="form-control ">
+                            @foreach (var item in @ViewBag.Materia)
+                            {
+                                <option value="@item.Nombre_Materia">
+                                    @item.Nombre_Materia
+                                </option>
+                            }
+                        </select>
+                    </div>
+                    <!--Btn enviar datos-->
+                    <div class="form-floating mt-3">
+                        <button type="submit" class="btn btn-primary d-block mx-auto"><i class="bi bi-pencil-fill">Editar nota</i></button>
+                    </div>
+                </form>
+                <a asp-controller="Restaurante" asp-action="Index">Regresar</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,27 @@
+﻿@model Proyecto_Escuelas_ASP.Models.PonerRol
+@{
+    ViewData["Title"] = "AsignarRolUser";
+
+}
+
+<h1 style="color:#67b588">Asignar Rol al usuario</h1>
+<section>
+    <form asp-controller="Admin" asp-action="PonerRol" method="post">
+
+        <div class="form-group">
+            <input style="color:#67b588" class="bg-transparent form-control" asp-for="UserId" value="@ViewBag.id" />
+            <select asp-for="RoleName" id="Role" style="color:#67b588" class="bg-transparent form-control mt-3">
+                @foreach (var rol in ViewBag.rol)
+                {
+                    <option value="@rol.Name">@rol.Name</option>
+                }
+
+            </select>
+
+            <button type="submit" class="w-100 btn btn-lg bg-gradient mt-3" style="color:#67b588">Agregar</button>
+        </div>
+    </form>
+</section>
+@section Scripts {
+
+}

@@ -1,0 +1,63 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using Microsoft.AspNetCore;
+@model Proyecto_Escuelas_ASP.Models.viewModelUsers
+@{
+    ViewData["Title"] = "Roles";
+}
+
+
+
+<table class="table">
+    <thead>
+        <tr style="color:#67b588" class="bg-gradient">
+            <th class="col">
+                Id User
+            </th>
+            <th class="col">
+                UserName
+            </th>
+
+            <th class="col">Correo</th>
+            <th>Roles</th>
+            <th>Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Usuarios)
+        {         
+            <tr style="color:#67b588" class="bg-gradient">
+                <td>
+                    @Html.DisplayFor(x=>item.Id)         
+                </td>
+                <td>
+                    @Html.DisplayFor(x=>item.Email)       
+                </td>
+                <td>
+                    @Html.DisplayFor(x=>item.UserName)     
+                </td>
+
+
+                <td>
+                    @{
+                        var vacio = "";
+                        var idUser = item.Id;
+                        var idRol = Model.rolesFk.Where(x => x.UserId == idUser).ToList();
+
+                        foreach (var rol in idRol)
+                        {
+                            var NombreRol = Model.roles.Where(x => x.Id == rol.RoleId).Select(x => x.Name).FirstOrDefault();
+                            @Html.Raw("   ") @NombreRol
+                        }
+
+
+                    }
+                </td>
+                <td>
+
+                    <a class="w-100 btn btn-lg bg-gradient" style="color:#67b588" asp-action="AsignarRolUser" asp-route-ID="@item.Id"> Asignar rol</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>

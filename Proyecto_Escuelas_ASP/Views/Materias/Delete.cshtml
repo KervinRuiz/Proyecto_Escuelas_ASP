@@ -1,0 +1,44 @@
+﻿<!--Para poder acceder a la entidad de contacto-->
+@model Proyecto_Escuelas_ASP.Models.Materia
+
+@{
+    ViewData["Title"] = "Detalles Materia";
+}
+
+<h1 class="text-center">Eliminar Materia</h1>
+
+
+<div class="row">
+    <div class="offset-12">
+        <div class="card border">
+
+            <div class="card-header bg-dark">
+
+                <h3 class="text-white">
+                    <strong>Detalles Materia</strong>
+                </h3>
+            </div>
+
+            <div class="card-body">
+                <ul class="list-group-item">
+                    <li class="list-group-item"><strong>Nombre: </strong>@Html.DisplayFor(m => m.Nombre_Materia)</li>
+                    <li class="list-group-item"><strong>Descripcion: </strong>@Html.DisplayFor(m => m.Descripcion)</li>
+                    <li class="list-group-item"><strong>Nivel : </strong>@Html.DisplayFor(m => m.Profesores.PersonaId)</li>
+                </ul>
+
+
+                <form asp-action="DeleteConfirmed" method="post">
+                    <!--Btn enviar datos-->
+                    <div class="form-floating mt-3">
+                        <button type="submit" class="btn btn-danger d-block mx-auto"><i class="bi bi-pencil-fill">Eliminar Materia</i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
