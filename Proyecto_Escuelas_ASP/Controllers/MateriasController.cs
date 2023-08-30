@@ -66,16 +66,16 @@ namespace Proyecto_Escuelas_ASP.Controllers
         }
         [HttpGet]
         // GET: Materias/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(string IdMateria)
         {
-            if (id == null)
+            if (IdMateria == null)
             {
                 return NotFound();
             }
             var materia = await _context.Materias
                .Include(m => m.Profesores)
                .Include(m => m.Profesores.Personas)
-               .FirstOrDefaultAsync(m => m.Nombre_Materia == id);
+               .FirstOrDefaultAsync(m => m.Nombre_Materia == IdMateria);
             if (materia == null)
             {
                 return NotFound();
@@ -86,9 +86,9 @@ namespace Proyecto_Escuelas_ASP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, Materia materia)
+        public async Task<IActionResult> Edit( Materia materia)
         {
-            if (id == null)
+            if (materia != null)
             {
                 materia.Estado = true;
                 _context.Materias.Update(materia);
@@ -99,16 +99,16 @@ namespace Proyecto_Escuelas_ASP.Controllers
         }
         [HttpGet]
         // GET: Materias/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(string? IdMateria)
         {
-            if (id == null)
+            if (IdMateria == null)
             {
                 return NotFound();
             }
 
             var materia = await _context.Materias
                 .Include(m => m.Profesores)
-                .FirstOrDefaultAsync(m => m.Nombre_Materia == id);
+                .FirstOrDefaultAsync(m => m.Nombre_Materia == IdMateria);
             if (materia == null)
             {
                 return NotFound();
@@ -120,9 +120,9 @@ namespace Proyecto_Escuelas_ASP.Controllers
         // POST: Materias/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(string? IdMateria)
         {
-            var materia = await _context.Materias.FindAsync(id);
+            var materia = await _context.Materias.Where(n=>n.Nombre_Materia == IdMateria).FirstOrDefaultAsync();
             if (materia == null)
             {
                 return NotFound();

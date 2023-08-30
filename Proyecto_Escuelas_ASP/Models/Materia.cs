@@ -7,6 +7,7 @@ namespace Proyecto_Escuelas_ASP.Models
     public class Materia
     {
         [Key]
+    
         public string Nombre_Materia { get; set; }
         [Required(ErrorMessage = "Descripcion requerida")]
         public string Descripcion { get; set; }
