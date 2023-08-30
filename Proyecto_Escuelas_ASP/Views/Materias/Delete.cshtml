@@ -23,11 +23,11 @@
                 <ul class="list-group-item">
                     <li class="list-group-item"><strong>Nombre: </strong>@Html.DisplayFor(m => m.Nombre_Materia)</li>
                     <li class="list-group-item"><strong>Descripcion: </strong>@Html.DisplayFor(m => m.Descripcion)</li>
-                    <li class="list-group-item"><strong>Nivel : </strong>@Html.DisplayFor(m => m.Profesores.PersonaId)</li>
+                    <li class="list-group-item"><strong>Profesor : </strong>@Html.DisplayFor(m => m.Profesores.PersonaId)</li>
                 </ul>
 
 
-                <form asp-action="DeleteConfirmed" method="post">
+                <form asp-action="DeleteConfirmed" method="post" asp-route-IdMateria="@Model.Nombre_Materia">
                     <!--Btn enviar datos-->
                     <div class="form-floating mt-3">
                         <button type="submit" class="btn btn-danger d-block mx-auto"><i class="bi bi-pencil-fill">Eliminar Materia</i></button>

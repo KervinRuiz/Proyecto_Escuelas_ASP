@@ -12,7 +12,7 @@ using Proyecto_Escuelas_ASP.Data;
 namespace Proyecto_Escuelas_ASP.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230829021618_MigrationInicial")]
+    [Migration("20230830184000_MigrationInicial")]
     partial class MigrationInicial
     {
         /// <inheritdoc />
@@ -170,12 +170,10 @@ namespace Proyecto_Escuelas_ASP.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -212,12 +210,10 @@ namespace Proyecto_Escuelas_ASP.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");

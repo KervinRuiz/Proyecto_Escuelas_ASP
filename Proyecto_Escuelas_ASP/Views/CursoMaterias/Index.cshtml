@@ -38,7 +38,7 @@
                                 <thead>
                                     <tr>
                                         <th>@Html.DisplayNameFor(n=>n.Cursos.Nombre_Curso)</th>
-                                        <th>@Html.DisplayNameFor(n=>n.Materias.Nombre_Materia)</th>
+                                        <th>@Html.DisplayNameFor(n=>n.MateriaId)</th>
                                         <th>Opciones</th>
                                     </tr>
                                 </thead>
@@ -47,7 +47,7 @@
                                     {
                                         <tr>
                                             <td>@Html.DisplayFor(n=>item.Cursos.Nombre_Curso)</td>
-                                            <td>@Html.DisplayFor(n=>item.Materias.Nota_Materias)</td>
+                                            <td>@Html.DisplayFor(n=>item.MateriaId)</td>
                                             <th>
                                                 <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">
                                                     <i class="bi bi-pencil">Detalles</i>

@@ -37,7 +37,7 @@
                             <table class="table table-responsive-md text-center" id="tblUsuarios">
                                 <thead>
                                     <tr>
-                                        <th>@Html.DisplayNameFor(n=>n.MateriaId)</th>
+                                        <th>@Html.DisplayNameFor(n=>n.Materias.Nombre_Materia)</th>
                                         <th>@Html.DisplayNameFor(n=>n.Estudiantes.PersonaId)</th>
                                         <th>@Html.DisplayNameFor(n=>n.FechaCalificacion)</th>
                                         <th>@Html.DisplayNameFor(n=>n.NotaObtenida)</th>
@@ -48,7 +48,7 @@
                                     @foreach (var item in Model)
                                     {
                                         <tr>
-                                            <td>@Html.DisplayFor(n=>item.Materias.Nota_Materias)</td>
+                                            <td>@Html.DisplayFor(n=>item.Materias.Nombre_Materia)</td>
                                             <td>@Html.DisplayFor(n=>item.Estudiantes.PersonaId)</td>
                                             <td>@Html.DisplayFor(n=>item.FechaCalificacion)</td>
                                             <td>@Html.DisplayFor(n=>item.NotaObtenida)</td>
