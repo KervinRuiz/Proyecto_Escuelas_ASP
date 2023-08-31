@@ -25,6 +25,13 @@ namespace Proyecto_Escuelas_ASP.Controllers
               var curso = _context.Cursos.Where(n => n.Estado == true);
               return View(await curso.ToListAsync());
         }
+        [HttpGet]
+        // GET: Cursoes
+        public async Task<IActionResult> Index2()
+        {
+            var curso = _context.Cursos.Where(n => n.Estado == true);
+            return View(await curso.ToListAsync());
+        }
 
         [HttpGet]
         // GET: Cursoes/Details/5

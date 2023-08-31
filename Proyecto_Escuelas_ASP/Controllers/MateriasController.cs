@@ -26,6 +26,13 @@ namespace Proyecto_Escuelas_ASP.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
         [HttpGet]
+        // GET: Materias
+        public async Task<IActionResult> Index2()
+        {
+            var applicationDbContext = _context.Materias.Include("Profesores").Where(n => n.Estado == true);
+            return View(await applicationDbContext.ToListAsync());
+        }
+        [HttpGet]
         // GET: Materias/Details/5
         public async Task<IActionResult> Details(string id)
         {
