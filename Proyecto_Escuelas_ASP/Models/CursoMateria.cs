@@ -14,5 +14,6 @@ namespace Proyecto_Escuelas_ASP.Models
         public bool Estado { get; set; }
         public virtual Curso Cursos { get; set; }
         public virtual Materia Materias { get; set; }
+        public virtual IEnumerable<Nota_Materia> Nota_Materias { get; set; }
     }
 }

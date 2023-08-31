@@ -22,8 +22,20 @@ namespace Proyecto_Escuelas_ASP.Controllers
         // GET: Nota_Materia
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.NotaMaterias.Include("Estudiantes").Include("Materias").Where(n => n.Estado == true);
+            var applicationDbContext = _context.NotaMaterias.Include(cm => cm.Estudiantes).ThenInclude(cm => cm.Personas)
+                .Include(cm => cm.CursoMateria).
+                ThenInclude(cm => cm.Cursos).Where(n => n.Estado == true);
             return View(await applicationDbContext.ToListAsync());
+        }
+        [HttpGet]
+        // GET: Nota_Materia
+        public async Task<IActionResult> NotaEstudiantePorID(BuscarEstudiante estudiantes)
+        {
+            var estudiante = await _context.NotaMaterias.Include(cm => cm.Estudiantes).ThenInclude(cm => cm.Personas)
+                .Include(cm => cm.CursoMateria).ThenInclude(cm => cm.Cursos)
+                .Include(cm => cm.CursoMateria).ThenInclude(cm => cm.Materias)
+                .Where(x => x.Estudiantes.PersonaId == estudiantes.Cedula).ToListAsync();
+            return View(estudiante);
         }
 
         [HttpGet]
@@ -37,7 +49,7 @@ namespace Proyecto_Escuelas_ASP.Controllers
 
             var nota_Materia = await _context.NotaMaterias
                 .Include(n => n.Estudiantes)
-                .Include(n => n.Materias)
+                .Include(n => n.CursoMateria)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (nota_Materia == null)
             {
@@ -51,14 +63,14 @@ namespace Proyecto_Escuelas_ASP.Controllers
         public async Task<IActionResult> Create()
         {
             ViewBag.Estudiante = await _context.Estudiantes.Where(n => n.Estado == true).ToListAsync();
-            ViewBag.Materia = await _context.Materias.Where(n => n.Estado == true).ToListAsync();
+            ViewBag.CursoMateria = await _context.CursoMaterias.Where(n => n.Estado == true).ToListAsync();
             return View();
         }
 
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create( Nota_Materia nota_Materia)
+        public async Task<IActionResult> Create(Nota_Materia nota_Materia)
         {
             nota_Materia.Estado = true;
             _context.Add(nota_Materia);
@@ -69,30 +81,30 @@ namespace Proyecto_Escuelas_ASP.Controllers
         // GET: Nota_Materia/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null )
+            if (id == null)
             {
                 return NotFound();
             }
 
             var nota_Materia = await _context.NotaMaterias
                   .Include(n => n.Estudiantes)
-                  .Include(n => n.Materias)
+                  .Include(n => n.CursoMateria)
                   .FirstOrDefaultAsync(m => m.Id == id);
             if (nota_Materia == null)
             {
                 return NotFound();
             }
             ViewBag.Estudiante = await _context.Estudiantes.Where(n => n.Estado == true).ToListAsync();
-            ViewBag.Materia = await _context.Materias.Where(n => n.Estado == true).ToListAsync();
+            ViewBag.CursoMateria = await _context.CursoMaterias.Where(n => n.Estado == true).ToListAsync();
             return View(nota_Materia);
         }
 
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id,Nota_Materia nota_Materia)
+        public async Task<IActionResult> Edit(int id, Nota_Materia nota_Materia)
         {
-            if(id == nota_Materia.Id)
+            if (id == nota_Materia.Id)
             {
                 nota_Materia.Estado = true;
                 _context.NotaMaterias.Update(nota_Materia);
@@ -112,7 +124,7 @@ namespace Proyecto_Escuelas_ASP.Controllers
 
             var nota_Materia = await _context.NotaMaterias
                 .Include(n => n.Estudiantes)
-                .Include(n => n.Materias)
+                .Include(n => n.CursoMateria)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (nota_Materia == null)
             {
@@ -127,7 +139,7 @@ namespace Proyecto_Escuelas_ASP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-           var notamateria = await _context.NotaMaterias.FindAsync(id);
+            var notamateria = await _context.NotaMaterias.FindAsync(id);
             if (notamateria == null)
             {
                 return NotFound();
@@ -140,7 +152,7 @@ namespace Proyecto_Escuelas_ASP.Controllers
 
         private bool Nota_MateriaExists(int id)
         {
-          return (_context.NotaMaterias?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.NotaMaterias?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

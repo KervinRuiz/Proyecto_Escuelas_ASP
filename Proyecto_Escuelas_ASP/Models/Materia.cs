@@ -7,7 +7,7 @@ namespace Proyecto_Escuelas_ASP.Models
     public class Materia
     {
         [Key]
-    
+
         public string Nombre_Materia { get; set; }
         [Required(ErrorMessage = "Descripcion requerida")]
         public string Descripcion { get; set; }
@@ -16,6 +16,5 @@ namespace Proyecto_Escuelas_ASP.Models
         [ForeignKey("Profesores")]
         public int ProfesorId { get; set; }
         public virtual Profesor Profesores { get; set; }
-        public virtual IEnumerable<Nota_Materia> Nota_Materias { get; set; }
     }
 }
