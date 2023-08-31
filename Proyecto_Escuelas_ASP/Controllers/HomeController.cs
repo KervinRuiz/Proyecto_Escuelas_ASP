@@ -21,7 +21,7 @@ namespace Proyecto_Escuelas_ASP.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult NotaEstudiante()
         {
             return View();
         }

@@ -29,13 +29,34 @@ namespace Proyecto_Escuelas_ASP.Controllers
         }
         [HttpGet]
         // GET: Nota_Materia
-        public async Task<IActionResult> NotaEstudiantePorID(BuscarEstudiante estudiantes)
+        public async Task<IActionResult> NotaEstudiantePorID(string id)
         {
-            var estudiante = await _context.NotaMaterias.Include(cm => cm.Estudiantes).ThenInclude(cm => cm.Personas)
-                .Include(cm => cm.CursoMateria).ThenInclude(cm => cm.Cursos)
-                .Include(cm => cm.CursoMateria).ThenInclude(cm => cm.Materias)
-                .Where(x => x.Estudiantes.PersonaId == estudiantes.Cedula).ToListAsync();
-            return View(estudiante);
+            try
+            {
+                var estudiante = await _context.NotaMaterias
+                    .Include(cm => cm.Estudiantes)
+                        .ThenInclude(e => e.Personas)
+                    .Include(cm => cm.CursoMateria)
+                        .ThenInclude(cm => cm.Cursos)
+                    .Include(cm => cm.CursoMateria)
+                        .ThenInclude(cm => cm.Materias)
+                    .Where(x => x.Estudiantes.PersonaId == id)
+                    .ToListAsync();
+
+                if (estudiante != null && estudiante.Count > 0)
+                {
+                    return View(estudiante);
+                }
+                else
+                {
+                    return RedirectToAction("EstudianteNoEncontrado");
+                }
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error");
+            }
+
         }
 
         [HttpGet]
