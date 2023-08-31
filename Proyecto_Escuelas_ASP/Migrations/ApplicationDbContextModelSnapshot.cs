@@ -351,6 +351,9 @@ namespace Proyecto_Escuelas_ASP.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CursoMateriaId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("Estado")
                         .HasColumnType("bit");
 
@@ -360,10 +363,6 @@ namespace Proyecto_Escuelas_ASP.Migrations
                     b.Property<DateTime>("FechaCalificacion")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("MateriaId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<double>("NotaObtenida")
                         .HasColumnType("float");
 
@@ -372,9 +371,9 @@ namespace Proyecto_Escuelas_ASP.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EstudianteId");
+                    b.HasIndex("CursoMateriaId");
 
-                    b.HasIndex("MateriaId");
+                    b.HasIndex("EstudianteId");
 
                     b.HasIndex("PersonaIdentificacion");
 
@@ -543,15 +542,15 @@ namespace Proyecto_Escuelas_ASP.Migrations
 
             modelBuilder.Entity("Proyecto_Escuelas_ASP.Models.Nota_Materia", b =>
                 {
-                    b.HasOne("Proyecto_Escuelas_ASP.Models.Estudiante", "Estudiantes")
-                        .WithMany()
-                        .HasForeignKey("EstudianteId")
+                    b.HasOne("Proyecto_Escuelas_ASP.Models.CursoMateria", "CursoMateria")
+                        .WithMany("Nota_Materias")
+                        .HasForeignKey("CursoMateriaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Proyecto_Escuelas_ASP.Models.Materia", "Materias")
-                        .WithMany("Nota_Materias")
-                        .HasForeignKey("MateriaId")
+                    b.HasOne("Proyecto_Escuelas_ASP.Models.Estudiante", "Estudiantes")
+                        .WithMany()
+                        .HasForeignKey("EstudianteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -559,9 +558,9 @@ namespace Proyecto_Escuelas_ASP.Migrations
                         .WithMany("Nota_Materias")
                         .HasForeignKey("PersonaIdentificacion");
 
-                    b.Navigation("Estudiantes");
+                    b.Navigation("CursoMateria");
 
-                    b.Navigation("Materias");
+                    b.Navigation("Estudiantes");
                 });
 
             modelBuilder.Entity("Proyecto_Escuelas_ASP.Models.Profesor", b =>
@@ -582,7 +581,7 @@ namespace Proyecto_Escuelas_ASP.Migrations
                     b.Navigation("Estudiantes");
                 });
 
-            modelBuilder.Entity("Proyecto_Escuelas_ASP.Models.Materia", b =>
+            modelBuilder.Entity("Proyecto_Escuelas_ASP.Models.CursoMateria", b =>
                 {
                     b.Navigation("Nota_Materias");
                 });

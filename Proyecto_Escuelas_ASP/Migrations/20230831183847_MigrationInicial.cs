@@ -298,7 +298,7 @@ namespace Proyecto_Escuelas_ASP.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EstudianteId = table.Column<int>(type: "int", nullable: false),
-                    MateriaId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CursoMateriaId = table.Column<int>(type: "int", nullable: false),
                     FechaCalificacion = table.Column<DateTime>(type: "datetime2", nullable: false),
                     NotaObtenida = table.Column<double>(type: "float", nullable: false),
                     Estado = table.Column<bool>(type: "bit", nullable: false),
@@ -308,16 +308,16 @@ namespace Proyecto_Escuelas_ASP.Migrations
                 {
                     table.PrimaryKey("PK_NotaMaterias", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_NotaMaterias_Estudiantes_EstudianteId",
-                        column: x => x.EstudianteId,
-                        principalTable: "Estudiantes",
+                        name: "FK_NotaMaterias_CursoMaterias_CursoMateriaId",
+                        column: x => x.CursoMateriaId,
+                        principalTable: "CursoMaterias",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_NotaMaterias_Materias_MateriaId",
-                        column: x => x.MateriaId,
-                        principalTable: "Materias",
-                        principalColumn: "Nombre_Materia");
+                        name: "FK_NotaMaterias_Estudiantes_EstudianteId",
+                        column: x => x.EstudianteId,
+                        principalTable: "Estudiantes",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_NotaMaterias_Personas_PersonaIdentificacion",
                         column: x => x.PersonaIdentificacion,
@@ -390,14 +390,14 @@ namespace Proyecto_Escuelas_ASP.Migrations
                 column: "ProfesorId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_NotaMaterias_CursoMateriaId",
+                table: "NotaMaterias",
+                column: "CursoMateriaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_NotaMaterias_EstudianteId",
                 table: "NotaMaterias",
                 column: "EstudianteId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_NotaMaterias_MateriaId",
-                table: "NotaMaterias",
-                column: "MateriaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_NotaMaterias_PersonaIdentificacion",
@@ -429,9 +429,6 @@ namespace Proyecto_Escuelas_ASP.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "CursoMaterias");
-
-            migrationBuilder.DropTable(
                 name: "NotaMaterias");
 
             migrationBuilder.DropTable(
@@ -439,6 +436,9 @@ namespace Proyecto_Escuelas_ASP.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "CursoMaterias");
 
             migrationBuilder.DropTable(
                 name: "Estudiantes");

@@ -37,10 +37,12 @@
                             <table class="table table-responsive-md text-center" id="tblUsuarios">
                                 <thead>
                                     <tr>
-                                        <th>@Html.DisplayNameFor(n=>n.Materias.Nombre_Materia)</th>
+
                                         <th>@Html.DisplayNameFor(n=>n.Estudiantes.PersonaId)</th>
                                         <th>@Html.DisplayNameFor(n=>n.FechaCalificacion)</th>
                                         <th>@Html.DisplayNameFor(n=>n.NotaObtenida)</th>
+                                        <th>@Html.DisplayNameFor(n=>n.CursoMateria.MateriaId)</th>
+                                        <th>@Html.DisplayNameFor(n=>n.CursoMateria.Cursos.Nombre_Curso)</th>
                                         <th>Opciones</th>
                                     </tr>
                                 </thead>
@@ -48,10 +50,12 @@
                                     @foreach (var item in Model)
                                     {
                                         <tr>
-                                            <td>@Html.DisplayFor(n=>item.Materias.Nombre_Materia)</td>
+
                                             <td>@Html.DisplayFor(n=>item.Estudiantes.PersonaId)</td>
                                             <td>@Html.DisplayFor(n=>item.FechaCalificacion)</td>
                                             <td>@Html.DisplayFor(n=>item.NotaObtenida)</td>
+                                            <td>@Html.DisplayFor(n=>item.CursoMateria.MateriaId)</td>
+                                            <td>@Html.DisplayFor(n=>item.CursoMateria.Cursos.Nombre_Curso)</td>
                                             <th>
                                                 <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">
                                                     <i class="bi bi-pencil">Detalles</i>
