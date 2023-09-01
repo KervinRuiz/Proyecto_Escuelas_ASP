@@ -5,44 +5,49 @@
     ViewData["Title"] = "Detalles Curso";
 }
 
-<h1>Details</h1>
+<div class="text-center">
+    <h1 class="text-dark">Detalles del Curso</h1>
 
-<div>
-    <h4>Restaurantes</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Codigo)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Codigo)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Nombre_Curso)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Nombre_Curso)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Nivel)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Nivel)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FechaInicio)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.FechaInicio)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FechaFin)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.FechaFin)
-        </dd>
-    </dl>
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2 text-dark">
+                @Html.DisplayNameFor(model => model.Codigo)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Codigo)
+            </dd>
+            <dt class="col-sm-2 text-dark">
+                @Html.DisplayNameFor(model => model.Nombre_Curso)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Nombre_Curso)
+            </dd>
+            <dt class="col-sm-2 text-dark">
+                @Html.DisplayNameFor(model => model.Nivel)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Nivel)
+            </dd>
+            <dt class="col-sm-2 text-dark">
+                @Html.DisplayNameFor(model => model.FechaInicio)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.FechaInicio)
+            </dd>
+            <dt class="col-sm-2 text-dark">
+                @Html.DisplayNameFor(model => model.FechaFin)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.FechaFin)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a class="btn btn-primary" asp-action="Index">
+            <i class="bi bi-arrow-left-square mx-2 mt-1"></i>Volver
+        </a>
+    </div>
 </div>
-<div>
-    <a class="btn btn-primary" asp-action="Index"><i class="bi bi-arrow-left-square mx-2 mt-1"></i>Volver</a>
-</div>
+
+
