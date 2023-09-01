@@ -1,0 +1,74 @@
+﻿@model IEnumerable< Proyecto_Escuelas_ASP.Models.Nota_Materia>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Notas</title>
+    <style>
+        .contenedor {
+            margin: 20px;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+        /* Estilos para la tabla */
+
+        .tbproductos {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+            /* Estilos para las celdas de encabezado */
+
+            .tbproductos th {
+                background-color: #333;
+                color: #fff;
+                padding: 10px;
+                text-align: left;
+            }
+            /* Estilos para las celdas de datos */
+
+            .tbproductos td {
+                padding: 8px;
+                border: 1px solid #ccc;
+            }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <h1 class="h1">Notas</h1>
+        <table class="tbproductos">
+            <thead>
+                <tr>
+                    <th class="th">@Html.DisplayNameFor(m=>m.Id)</th>
+                    <th class="th">@Html.DisplayNameFor(m=>m.NotaObtenida)</th>
+                    <th class="th">@Html.DisplayNameFor(m=>m.Estudiantes.PersonaId)</th>
+                    <th class="th">@Html.DisplayNameFor(m=>m.CursoMateria.Materias.Nombre_Materia)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="td">@Html.DisplayFor(n=>item.Id)</td>
+                        <td class="td">@Html.DisplayFor(n=>item.NotaObtenida)</td>
+                        <td class="td">@Html.DisplayFor(n=>item.Estudiantes.PersonaId)</td>
+                        <td class="td">@Html.DisplayFor(n=>item.CursoMateria.Materias.Nombre_Materia)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

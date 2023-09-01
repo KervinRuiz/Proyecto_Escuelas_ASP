@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Proyecto_Escuelas_ASP.Data;
 using Proyecto_Escuelas_ASP.Models;
+using Rotativa.AspNetCore;
 
 namespace Proyecto_Escuelas_ASP.Controllers
 {
@@ -26,6 +27,24 @@ namespace Proyecto_Escuelas_ASP.Controllers
                 .Include(cm => cm.CursoMateria).
                 ThenInclude(cm => cm.Cursos).Where(n => n.Estado == true);
             return View(await applicationDbContext.ToListAsync());
+        }
+        public IActionResult Imprimir(string id)
+        {
+            var estudiante = _context.NotaMaterias
+                    .Include(cm => cm.Estudiantes)
+                        .ThenInclude(e => e.Personas)
+                    .Include(cm => cm.CursoMateria)
+                        .ThenInclude(cm => cm.Cursos)
+                    .Include(cm => cm.CursoMateria)
+                        .ThenInclude(cm => cm.Materias)
+                    .Where(x => x.Estudiantes.PersonaId == id)
+                    .ToList();
+            return new ViewAsPdf("Imprimir", estudiante)
+            {
+                FileName = $"Restaurantes {estudiante}.pdf",
+                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
+                PageSize = Rotativa.AspNetCore.Options.Size.A4
+            };
         }
         [HttpGet]
         // GET: Nota_Materia
